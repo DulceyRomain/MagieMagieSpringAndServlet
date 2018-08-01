@@ -1,0 +1,350 @@
+html{
+    height: 100%;
+}
+
+body{
+	background-image: url("http://hdqwalls.com/wallpapers/the-witcher-3-sword-pic.jpg");
+	background-size: cover;
+         height: 95%;
+         margin: 0;
+         padding : 0;
+
+}
+
+
+.partie{
+	color : white;
+	font-family: Impact ;
+	font-size: 20px;
+      
+        
+}
+
+.affichageListe{
+	
+	background-color: rgba(25,25,112,0.3);
+        width: 99%;
+        border-radius: 5px;
+	border : 5px double white;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	overflow-y: scroll;
+	height: 600px;
+}
+
+
+.dPartie{
+	margin-bottom: 30px;
+	height: 30px;
+}
+
+
+
+#buttonRejoindre{
+	 border-radius: 20px;
+	 font-weight:  bold;
+	 border: 2px solid #b7b7b7;
+	 background-color: #152042;
+	 color: white;
+	 font-size: 18px;
+	 border : 3px outset white ;
+}
+
+#buttonRejoindre:hover{
+	 background-color:#353f60;
+	 border : 3px inset white;
+
+}
+
+#listePartie{
+	color : white;
+	font-family: Impact ;
+	font-size: 30px;
+}
+
+#nom{
+	color : white;
+	font-weight: bold;
+	font-family: Impact ;
+	font-size: 30px;
+	
+}
+
+
+
+#titre{
+
+	color : white;
+	font-weight: bold;
+	font-family: Impact;
+	font-size: 50px;
+	text-shadow: 3px 3px #B22222;
+	text-align: center;
+}
+
+#avatar{
+	width:250px;
+	height:302px;
+	border-radius: 25em;
+	border : 5px double white;
+}
+
+#avatar:hover{
+
+}
+
+
+
+#perso{
+	display: flex;
+        flex-direction: column;
+	float: left;
+	
+}
+
+#creerPartie{
+	
+	margin-left: 70px;
+	float : left;
+	margin-top: 100px;
+}
+
+
+a{
+	text-decoration: none;
+	
+}
+
+#nomPartie{
+	color : white;
+	font-family: Impact ;
+	font-size: 30px;
+}
+
+#buttonCreer{
+	border-radius: 20px;
+	font-weight:  bold;
+	background-color: #152042;
+	color: white;
+	font-size: 20px;
+    border : 3px outset white ;
+
+}
+#buttonCreer:hover{
+	 background-color: #353f60;
+	 border : 3px inset white;
+}
+
+
+#lienCreer{
+	border-radius: 20px;
+	 font-weight:  bold;
+	 border: 2px solid #b7b7b7;
+	 background-color: #152042;
+	 color: white;
+	 font-size: 18px;
+	 border : 3px outset white ;
+         padding: 5px;
+}
+
+#lienCreer:hover{
+	background-color: #353f60;
+	border : 3px inset white;
+}
+
+
+#lienbtn{
+    border-radius: 20px;
+	 font-weight:  bold;
+	 border: 2px solid #b7b7b7;
+	 background-color: #152042;
+	 color: white;
+	 font-size: 18px;
+	 border : 3px outset white ;
+         margin: 10px 0px;
+}
+
+#lienbtn:hover{
+	background-color: #353f60;
+	border : 3px inset white;
+}
+
+#inCrea{
+	border-radius: 50px;
+	font-size: 35px;
+	padding : 10px;
+}
+
+
+
+#lienCreerP{
+	border-radius: 20px;
+	font-weight:  bold;
+	background-color: #152042;
+	color: white;
+	font-size: 20px;
+        border : 3px outset white ;
+}
+
+#lienCreerP:hover{
+	background-color: #353f60;
+	 border : 3px inset white;
+}
+
+
+.witch{
+    width: 250px;
+    height: 222px;
+    border-radius: 6em;
+    border : 5px double white; 
+    
+}
+
+.witcher{
+    width: 120px;
+    height: 120px;
+    border-radius: 6em;
+
+  
+}
+
+.monJoueurAvatar{
+    width: 220px;
+    height: 230px;
+    border-radius: 6em;
+    border : 5px double white;
+    margin-left: 15px;
+}
+
+.witch2{
+     width: 200px;
+     padding: 0 25px;
+    height: 222px;
+    border-radius: 6em;
+    border : 5px double white; 
+}
+
+.witch3{
+    width: 150px;
+    padding: 0 50px;
+    height: 222px;
+    border-radius: 6em;
+    border : 5px double white; 
+}
+
+.creaJoueur{
+	background-color: rgba(25,25,112,0.3);
+        width: 99%;
+        border-radius: 5px;
+	border : 5px double white;
+	text-align: center;
+	display: inline-block;
+	float: left;
+	overflow-y: scroll;
+        height: 102%;
+}
+.buttonPerso{
+     margin-top: 20px;
+     border-radius: 20px;
+     font-weight:  bold;
+     border: 2px solid #b7b7b7;
+     background-color: #152042;
+     color: white;
+     font-size: 18px;
+     border : 3px outset white ;
+}
+
+.cartes{
+    height: 100px;
+    margin-top: 3px;
+    margin: 1px 2px;
+    border: 5px solid rgba(25,25,112,0);
+}
+
+.cartes:hover{
+    border: 5px solid red;
+   
+}
+
+.inPerso{
+  /* display: none;*/
+}
+
+
+.inPersoSaisie{
+   
+}
+
+#nbCartes{
+        color : white;
+	font-weight: bold;
+	font-family: Impact ;
+	font-size: 20px;
+}
+
+
+h2{
+    margin: 10px;
+    
+}
+
+.blockAdversaires{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+}
+
+.adversaire{
+    padding: 5px 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+#aLaMain{
+
+    width: 120px;
+    height: 120px;
+    border-radius: 6em;
+    border: 5px double red;
+} 
+
+#aLaMainMonPerso{
+
+   width: 220px;
+    height: 230px;
+    border-radius: 6em;
+    border : 5px double red;
+    margin-left: 15px;
+} 
+
+#pasLaMain{
+
+    width: 120px;
+    height: 120px;
+    border-radius: 6em;
+    border : 5px double white;
+}   
+
+#pasLaMainPerso{
+
+   width: 220px;
+    height: 230px;
+    border-radius: 6em;
+    border : 5px double white;
+    margin-left: 15px;
+}   
+
+#afficheCarte{
+   display: flex;
+   flex-wrap: wrap;
+}
+
+
+hr{
+    margin: 0;
+}
+ 
