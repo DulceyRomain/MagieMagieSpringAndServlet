@@ -69,7 +69,7 @@ public class PartieService {
                //Distribution des cartes
                  cs.piocherCarte(j);
             }     
-            }
+            } 
         }     
         return p;
     }
