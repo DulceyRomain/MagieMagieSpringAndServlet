@@ -35,11 +35,6 @@ public class PartieService {
     @Autowired
     private JoueurDaoCrud JdaoCrud;
     
-    
-    
-    private PartieDAO dao = new PartieDAO();
-    private JoueurDAO jDao = new JoueurDAO();
-    private CarteDAO cDao = new CarteDAO();
      
     @Autowired
     private CarteService cs ;
@@ -79,8 +74,8 @@ public class PartieService {
         return p;
     }
     
+    @Transactional
     public Partie creerNouvellePartie(String nom){
-      
         Partie p = new Partie();
         p.setNom(nom);
         PdaoCrud.save(p);
@@ -88,7 +83,7 @@ public class PartieService {
     }
     
  public Joueur rechJoueurQuiALaMainId(long partieId){
-        Joueur j = dao.rechJoueurQuiALaMainId(partieId);
+        Joueur j = PdaoCrud.rechJoueurQuiALaMainId(partieId);
         return j;
      
     } 

@@ -31,8 +31,10 @@ public class DemarrerPartieServlet extends AutowireServlet {
     
     @Autowired
     private PartieService pService;
-    CarteService cService = new CarteService();
-    JoueurService jService = new JoueurService();
+    @Autowired
+    private CarteService cService ;
+    @Autowired
+    private JoueurService jService ;
 
     
     

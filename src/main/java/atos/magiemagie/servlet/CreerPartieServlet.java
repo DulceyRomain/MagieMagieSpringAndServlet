@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -22,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CreerPartieServlet", urlPatterns = {"/creer-partie"})
 public class CreerPartieServlet extends AutowireServlet {
-    
-     private PartieService pService = new PartieService();
+    @Autowired
+     private PartieService pService;
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

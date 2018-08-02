@@ -6,6 +6,7 @@
 package atos.magiemagie.dao;
 
 import atos.magiemagie.entity.Carte;
+import atos.magiemagie.entity.Joueur;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +14,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author Administrateur
  */
 public interface CarteDaoCrud extends CrudRepository<Carte, Long> {
-    
+    public Carte findByIdAndJoueurProprietaire(long idCarte, Joueur joueurLanceur);
 }

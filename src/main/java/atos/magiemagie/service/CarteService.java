@@ -6,14 +6,19 @@
 package atos.magiemagie.service;
 
 import atos.magiemagie.dao.CarteDAO;
+import atos.magiemagie.dao.CarteDaoCrud;
 import atos.magiemagie.dao.JoueurDAO;
+import atos.magiemagie.dao.JoueurDaoCrud;
 import atos.magiemagie.dao.PartieDAO;
+import atos.magiemagie.dao.PartieDaoCrud;
 import atos.magiemagie.entity.Carte;
 import atos.magiemagie.entity.Joueur;
 import atos.magiemagie.entity.Partie;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -23,9 +28,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarteService {
 
+     @Autowired
+    private PartieDaoCrud PdaoCrud;
+    
+    @Autowired
+    private JoueurDaoCrud JdaoCrud;
+    
+    @Autowired
+    private CarteDaoCrud CdaoCrud;
+    
     private CarteDAO cDao = new CarteDAO();
-    private JoueurDAO jDao = new JoueurDAO();
-    private PartieDAO pDaO = new PartieDAO();
+   
+    
      
 
     public List<Joueur> listeAutresJoueursParPartieId(long idJoueurAExclure, long idPartie) {
@@ -35,12 +49,13 @@ public class CarteService {
         return joueurs;
     
     }
+    @Transactional
     public Carte donnerUneCarte (long idPartie){
         
-        Joueur joueurALaMain = pDaO.rechJoueurQuiALaMainId(idPartie);
+        Joueur joueurALaMain = PdaoCrud.rechJoueurQuiALaMainId(idPartie);
         JoueurService jService = new JoueurService();
         Joueur j = jService.ciblerUnJoueur();
-        long  idJoueur = pDaO.rechJoueurQuiALaMainId(idPartie).getId();
+        long  idJoueur = PdaoCrud.rechJoueurQuiALaMainId(idPartie).getId();
         
         Scanner s = new Scanner(System.in);
         System.out.print("Sélectionner la carte à cibler : ");
@@ -49,18 +64,18 @@ public class CarteService {
         joueurALaMain.getCartes().remove(carte);
         j.getCartes().add(carte);
         carte.setJoueurProprietaire(j);
-        cDao.modifierC(carte);
+        CdaoCrud.save(carte);
         
         
         return carte;
     }
     
-    
+    @Transactional
     public void sortSommeil() {
         JoueurService jService = new JoueurService();
         Joueur j = jService.ciblerUnJoueur();
         j.setEtatJoueur(Joueur.typeEtatJoueur.SOMMEIL_PROFOND);
-        jDao.modifier(j);
+        JdaoCrud.save(j);
     }
 
     
@@ -70,7 +85,7 @@ public class CarteService {
         return cartes;
     }
     
-    
+    @Transactional
     public void sortinvisibilite(long idPartie, long idJoueurAExclure ) {
         Partie p = new Partie();
         List<Joueur> joueurs = cDao.listeAutresJoueursParPartieId(idJoueurAExclure, idPartie);
@@ -82,13 +97,13 @@ public class CarteService {
             int alea = r.nextInt(taille);
             Carte carteAPrendre = cartes.get(alea);
             joueur.getCartes().remove(alea);
-            Joueur joueurALaMain = pDaO.rechJoueurQuiALaMainId(idPartie);
+            Joueur joueurALaMain = PdaoCrud.rechJoueurQuiALaMainId(idPartie);
             joueurALaMain.getCartes().add(carteAPrendre);
             carteAPrendre.setJoueurProprietaire(joueurALaMain);
-            cDao.modifierC(carteAPrendre);
+            CdaoCrud.save(carteAPrendre);
         }
     }
-
+    @Transactional
     public void sortPhiltreAmour(long idPartie) {
         JoueurService jService = new JoueurService();
         Joueur j = jService.ciblerUnJoueur();
@@ -105,18 +120,20 @@ public class CarteService {
             int alea = r.nextInt(taille);
             Carte carteAPrendre =  cartes.get(alea);
             j.getCartes().remove(alea);
-            Joueur joueurALaMain = pDaO.rechJoueurQuiALaMainId(idPartie);
+            Joueur joueurALaMain = PdaoCrud.rechJoueurQuiALaMainId(idPartie);
             joueurALaMain.getCartes().add(carteAPrendre);
             carteAPrendre.setJoueurProprietaire(joueurALaMain);
-            cDao.modifierC(carteAPrendre);
+             CdaoCrud.save(carteAPrendre);
         }
 
     }
 
+    
+    @Transactional
     public void sortHypnose(long idPartie) {
         JoueurService jService = new JoueurService();
         Joueur j = jService.ciblerUnJoueur();
-        Joueur joueurALaMain = pDaO.rechJoueurQuiALaMainId(idPartie);
+        Joueur joueurALaMain = PdaoCrud.rechJoueurQuiALaMainId(idPartie);
         List<Carte> cartes = j.getCartes();
         int taille = cartes.size();
         
@@ -129,15 +146,8 @@ public class CarteService {
             j.getCartes().remove(alea);
             joueurALaMain.getCartes().add(carteAPrendre);
             carteAPrendre.setJoueurProprietaire(joueurALaMain);
-            cDao.modifierC(carteAPrendre);
+            CdaoCrud.save(carteAPrendre);
         }
-        
-      
-        //Carte carte = cDao.rechercherUneCarte(idCarte, joueurALaMain.getId());
-        /*joueurALaMain.getCartes().remove(carte);
-        j.getCartes().add(carte);
-        carte.setJoueurProprietaire(j);
-        cDao.modifierC(carte);*/
     }
 
     public List<Joueur> sortDivination(long idJoueurAExclure, long idPartie) {
@@ -159,7 +169,7 @@ public class CarteService {
         carte.setIngredient(tabTypesCartes[n]);
         carte.setJoueurProprietaire(joueur);
 
-        cDao.addCarte(carte);
+        CdaoCrud.save(carte);
         return carte;
     }
 

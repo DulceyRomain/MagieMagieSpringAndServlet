@@ -62,6 +62,7 @@
                         <h2 id="nbCartes">Nombre de carte : ${nbCarte}</h2>
                         <img id="pasLaMainPerso" class="monJoueurAvatar" src="images/${monJoueur.avatar}.png">
                         <h2 id="nom">${monJoueur.pseudo}</h2>
+                         <a id="lienCreer" href="<c:url value="/passer-tour"/>">Passer son tour</a>
                     </div>
                 </c:if>
                 
